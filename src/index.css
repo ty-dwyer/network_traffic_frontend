@@ -1,0 +1,201 @@
+/* ---------- Reset / base ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0 0 20px 0;
+}
+
+h2 {
+  font-size: 16px;
+  margin: 0 0 12px 0;
+  color: #374151;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background-color: #111827;
+  color: white;
+}
+
+.nav-title {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.page-content {
+  padding: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ---------- Alert bell ---------- */
+.alert-bell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.bell-icon {
+  font-size: 22px;
+}
+
+.alert-bell-dropdown {
+  position: absolute;
+  top: 32px;
+  right: 0;
+  background: white;
+  color: #111827;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  padding: 10px;
+  min-width: 180px;
+  z-index: 10;
+}
+
+.alert-bell-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+.alert-bell-row:hover {
+  background-color: #f3f4f6;
+}
+
+.alert-count-badge {
+  background-color: #ef4444;
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* ---------- Stat cards ---------- */
+.stat-cards {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  flex: 1;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* ---------- Charts ---------- */
+.charts-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.chart-box {
+  flex: 1;
+  min-width: 340px;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Tables (packets + alerts) ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+thead {
+  background-color: #f9fafb;
+}
+
+th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+td {
+  padding: 10px 14px;
+  font-size: 14px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* ---------- Alert type badges ---------- */
+.alert-type-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  background-color: #6b7280;
+}
+
+.alert-new_device {
+  background-color: #f59e0b;
+}
+
+.alert-traffic_spike {
+  background-color: #ef4444;
+}
+
+.alert-unusual_port {
+  background-color: #8b5cf6;
+}
