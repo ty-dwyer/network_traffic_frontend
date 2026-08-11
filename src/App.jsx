@@ -11,10 +11,23 @@ function App() {
   const [alerts, setAlerts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/packets')
-      .then((response) => response.json())
-      .then((data) => setPackets(data))
-      .catch((error) => console.error('Failed to fetch packets:', error));
+    const client = new Client({
+      webSocketFactory: () => new SockJS('http://localhost:8080/ws'),
+      onConnect: () => {
+        client.subscribe('/topic/alerts', (message) => {
+          const alert = JSON.parse(message.body);
+          setAlerts((prevAlerts) => [alert, ...prevAlerts]);
+        });
+  
+        client.subscribe('/topic/packets', (message) => {
+          const packet = JSON.parse(message.body);
+          setPackets((prevPackets) => [...prevPackets, packet]);
+        });
+      },
+    });
+    client.activate();
+  
+    return () => client.deactivate();
   }, []);
 
   useEffect(() => {
