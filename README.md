@@ -1,6 +1,6 @@
 # Network Traffic Dashboard — Frontend
 
-A React dashboard for the [Network Traffic Monitoring & Anomaly Dashboard](../network_traffic) backend — visualizes ingested packet data, shows live alerts as they happen, and lets users upload `.pcap` files for analysis directly from the browser.
+A React dashboard for the [Network Traffic Monitoring & Anomaly Dashboard](https://github.com/ty-dwyer/network_traffic) backend — visualizes ingested packet data, shows live alerts as they happen, and lets users upload `.pcap` files for analysis directly from the browser.
 
 ## Features
 
