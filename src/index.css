@@ -262,3 +262,26 @@ tbody tr:hover {
   font-size: 13px;
   margin: 0;
 }
+
+.upload-box {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.upload-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.upload-message {
+  font-size: 13px;
+  color: #059669;
+  margin: 0;
+}

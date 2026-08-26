@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 
 const PROTOCOL_COLORS = {
@@ -8,6 +9,37 @@ const PROTOCOL_COLORS = {
 };
 
 function Dashboard({ packets }) {
+  const [uploading, setUploading] = useState(false);
+  const [uploadMessage, setUploadMessage] = useState('');
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setUploading(true);
+    setUploadMessage('');
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const token = localStorage.getItem('token');
+
+    fetch('http://localhost:8080/ingest/upload', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+      body: formData,
+    })
+      .then((response) => response.text())
+      .then((message) => {
+        setUploadMessage(message);
+        setUploading(false);
+      })
+      .catch(() => {
+        setUploadMessage('Upload failed');
+        setUploading(false);
+      });
+  };
+
   const protocolCounts = packets.reduce((acc, packet) => {
     acc[packet.protocol] = (acc[packet.protocol] || 0) + 1;
     return acc;
@@ -32,6 +64,20 @@ function Dashboard({ packets }) {
   return (
     <div>
       <h1>Dashboard</h1>
+
+      <div className="upload-box">
+        <label htmlFor="pcap-upload" className="upload-label">
+          {uploading ? 'Uploading...' : 'Upload a .pcap file to analyze'}
+        </label>
+        <input
+          id="pcap-upload"
+          type="file"
+          accept=".pcap"
+          onChange={handleFileUpload}
+          disabled={uploading}
+        />
+        {uploadMessage && <p className="upload-message">{uploadMessage}</p>}
+      </div>
 
       <div className="stat-cards">
         <div className="stat-card">
