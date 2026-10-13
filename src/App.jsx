@@ -12,15 +12,20 @@ function App() {
   const [packets, setPackets] = useState([]);
   const [alerts, setAlerts] = useState([]);
 
+  const refreshPackets = () => fetch('http://localhost:8080/packets', {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error(`Packet refresh failed (${response.status})`);
+      return response.json();
+    })
+    .then((data) => setPackets(Array.isArray(data) ? data : []))
+    .catch((error) => console.error('Failed to fetch packets:', error));
+
   useEffect(() => {
     if (!token) return;
 
-    fetch('http://localhost:8080/packets', {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((response) => response.json())
-      .then((data) => setPackets(data))
-      .catch((error) => console.error('Failed to fetch packets:', error));
+    refreshPackets();
   }, [token]);
 
   useEffect(() => {
@@ -65,7 +70,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout alerts={alerts} onLogout={handleLogout} />}>
-          <Route index element={<Dashboard packets={packets} />} />
+          <Route index element={<Dashboard packets={packets} onPacketsRefresh={refreshPackets} />} />
           <Route path="alerts" element={<Alerts alerts={alerts} />} />
         </Route>
       </Routes>
